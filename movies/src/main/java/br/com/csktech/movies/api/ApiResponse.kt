@@ -1,6 +1,6 @@
 package br.com.csktech.movies.api
 
-class ApiResponse<T> {
+internal class ApiResponse<T> {
 
     var page: Int? = null
     var total_results: Int? = null

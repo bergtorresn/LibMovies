@@ -1,14 +1,15 @@
 package br.com.csktech.movies.api
 
-object TopMoviesBusiness {
+class TopMoviesBusiness {
 
-    fun getTopMovies(onSuccess: (MutableList<Movie>) -> Unit, onError: (String) -> Unit) {
-        TopMoviesNetwork.getTopMoviesFromApi(onSuccess = {
+    fun fetchTopMovies(onSuccess: (MutableList<Movie>) -> Unit, onError: (String) -> Unit) {
+        TopMoviesNetworkApi.fetchTopMoviesFromApi({
             it.results?.let { movies ->
                 onSuccess(movies)
             }
-        }, onError = { error ->
-            onError(error)
+        }, onError = {
+            onError(it)
+
         })
     }
 }

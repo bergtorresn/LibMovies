@@ -12,10 +12,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        TopMoviesBusiness.getTopMovies(onSuccess = {
+        TopMoviesBusiness().fetchTopMovies(onSuccess = {
             tv_home.text = it.first().title
         }, onError = {
             Log.e("TOP_MOVIES_ERROR", it)
         })
+
     }
 }
