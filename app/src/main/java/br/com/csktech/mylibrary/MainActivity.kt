@@ -17,6 +17,5 @@ class MainActivity : AppCompatActivity() {
         }, onError = {
             Log.e("TOP_MOVIES_ERROR", it)
         })
-
     }
 }
