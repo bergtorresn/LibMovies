@@ -1,17 +1,49 @@
 package br.com.csktech.movies.api
 
-internal object TopMoviesNetworkApi : ApiBaseNetwork() {
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
-    private const val key = "a8b15cb8e4b148e23a32afe20e64cde9"
-    private const val lang = "pt-BR"
+class TopMoviesNetworkApi : ApiBaseNetwork() {
+
+    private val key = "a8b15cb8e4b148e23a32afe20e64cde9"
+    private val lang = "pt-BR"
 
     private val API by lazy {
         getRetrotif().create(TopMoviesApi::class.java)
     }
 
-    fun fetchTopMoviesFromApi(onSuccess: (ApiResponse<MutableList<Movie>>) -> Unit, onError: (String) -> Unit) {
-        doRequest(API, onSuccess, onError) {
-            fetchTopMovies(key, lang)
-        }
+    fun fetchTopMoviesFromApi(onSuccess: (ApiResponse) -> Unit, onError: (String) -> Unit) {
+        /* doRequest(API, onSuccess, onError) {
+             fetchTopMovies(key, lang)
+         } */
+
+        API.fetchTopMovies(key, lang).enqueue(object : Callback<ApiResponse> {
+
+            override fun onFailure(call: Call<ApiResponse>, t: Throwable) {
+                onError(t.localizedMessage)
+            }
+
+            override fun onResponse(
+                call: Call<ApiResponse>,
+                response: Response<ApiResponse>
+            ) {
+
+                try {
+                    when (response.code()) {
+                        200 -> {
+                            response.body()?.let {
+                                onSuccess(it)
+                            }
+                        }
+                        else -> {
+                            onError("Code ${response.code()}")
+                        }
+                    }
+                } catch (e: Exception) {
+                    onError("Exception $e")
+                }
+            }
+        })
     }
 }

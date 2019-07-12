@@ -4,11 +4,11 @@ import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-internal interface TopMoviesApi {
+interface TopMoviesApi {
 
     @GET("movie/popular")
     fun fetchTopMovies(
         @Query("api_key") api_key: String,
         @Query("language") language: String
-    ): Call<ApiResponse<MutableList<Movie>>>
+    ): Call<ApiResponse>
 }

@@ -1,10 +1,10 @@
 package br.com.csktech.movies.api
 
-internal class ApiResponse<T> {
+class ApiResponse {
 
     var page: Int? = null
     var total_results: Int? = null
     var total_pages: Int? = null
-    var results: T? = null
+    var results: MutableList<Movie>? = null
 
 }

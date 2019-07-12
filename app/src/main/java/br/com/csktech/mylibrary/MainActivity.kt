@@ -13,7 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         TopMoviesBusiness().fetchTopMovies(onSuccess = {
-            tv_home.text = it.first().title
+            tv_home.text = it?.first()?.title ?: "null"
         }, onError = {
             Log.e("TOP_MOVIES_ERROR", it)
         })
