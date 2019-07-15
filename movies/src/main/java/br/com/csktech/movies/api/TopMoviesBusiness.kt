@@ -7,16 +7,15 @@ class TopMoviesBusiness {
     fun fetchTopMovies(onSuccess: (MutableList<Movie>) -> Unit, onError: (String) -> Unit) {
         TopMoviesNetworkApi().fetchTopMoviesFromApi({
 
-            Log.i("***", "${it.page}")
-            Log.i("***", "${it.results?.size}")
+            Log.i("*** PAGE", "${it.page}")
 
-            it.results?.let { movies ->
-                onSuccess(movies)
-            } ?: run {
-                onError("*** ERRO - Não foi possível realizar o parse do json")
-            }
+           // it.results.let { movies ->
+                onSuccess(it.results!!)
+           // } ?: run {
+         //       onError("*** ERRO - Não foi possível realizar o parse do json")
+          //  }
         }, onError = {
-            onError("*** ERRO - $it")
+            onError("*** ERRO fetchTopMovies - $it")
         })
     }
 }

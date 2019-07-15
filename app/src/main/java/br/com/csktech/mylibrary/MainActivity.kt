@@ -13,9 +13,9 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         TopMoviesBusiness().fetchTopMovies(onSuccess = {
-            tv_home.text = it?.first()?.title ?: "null"
+            tv_home.text = it.first().title
         }, onError = {
-            Log.e("TOP_MOVIES_ERROR", it)
+            tv_home.text = it
         })
     }
 }

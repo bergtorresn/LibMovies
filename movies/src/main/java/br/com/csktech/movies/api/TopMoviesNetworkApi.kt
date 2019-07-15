@@ -1,5 +1,7 @@
 package br.com.csktech.movies.api
 
+import com.google.gson.Gson
+import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -32,16 +34,22 @@ class TopMoviesNetworkApi : ApiBaseNetwork() {
                 try {
                     when (response.code()) {
                         200 -> {
-                            response.body()?.let {
-                                onSuccess(it)
+                            if (response.isSuccessful) {
+                                response.body()?.let {
+                                    onSuccess(it)
+                                } ?: run {
+                                    onError("*** ERRO body null ")
+                                }
+                            } else {
+                                onError("*** ERRO response isntSuccessful")
                             }
                         }
                         else -> {
-                            onError("Code ${response.code()}")
+                            onError("*** Code ${response.code()}")
                         }
                     }
                 } catch (e: Exception) {
-                    onError("Exception $e")
+                    onError("*** ERRO NO RESPONSE ${e.localizedMessage}")
                 }
             }
         })
