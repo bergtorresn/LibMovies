@@ -2,18 +2,18 @@ package br.com.csktech.movies.api
 
 import com.google.gson.annotations.SerializedName
 
-class ApiResponse {
+class ApiResponse<T>  {
 
     @SerializedName("page")
     var page: Int? = null
 
     @SerializedName("total_results")
-    var total_results: Int? = null
+    var totalResults: Int? = null
 
     @SerializedName("total_pages")
-    var total_pages: Int? = null
+    var totalPages: Int? = null
 
     @SerializedName("results")
-    var results: MutableList<Movie>? = null
+    var results: T? = null
 
 }

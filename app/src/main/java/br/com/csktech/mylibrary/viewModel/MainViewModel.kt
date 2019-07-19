@@ -2,10 +2,10 @@ package br.com.csktech.mylibrary.viewModel
 
 import android.arch.lifecycle.MutableLiveData
 import android.arch.lifecycle.ViewModel
-import br.com.csktech.movies.api.Movie
-import br.com.csktech.movies.api.TopMoviesBusiness
+import br.com.csktech.movies.model.Movie
+import br.com.csktech.movies.access.TopMoviesAccess
 
-class MainViewModel(private val topMoviesBusiness: TopMoviesBusiness) : ViewModel(){
+class MainViewModel(private val topMoviesAccess: TopMoviesAccess) : ViewModel(){
 
     var successLiveData = MutableLiveData<MutableList<Movie>>()
     var errorLiveData = MutableLiveData<String>()
@@ -13,11 +13,11 @@ class MainViewModel(private val topMoviesBusiness: TopMoviesBusiness) : ViewMode
 
     fun fetchMovies(){
         this.setLoadingVisibility(true)
-        this.topMoviesBusiness.fetchTopMovies({movies ->
-            this.successLiveData.value = movies
+        this.topMoviesAccess.fetchTopMovies({ movies ->
+            this.successLiveData.postValue(movies)
             this.setLoadingVisibility(false)
         }, {error ->
-            this.errorLiveData.value = error
+            this.errorLiveData.postValue(error)
             this.setLoadingVisibility(false)
         })
     }

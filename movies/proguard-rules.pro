@@ -1,12 +1,8 @@
--keep class br.com.csktech.movies.api.Movie
--keep class br.com.csktech.movies.api.TopMoviesBusiness
--keepclassmembers class br.com.csktech.movies.api.TopMoviesBusiness {
+-keep class br.com.csktech.movies.model.Model.Movie
+-keep class br.com.csktech.movies.access.TopMoviesAccess
+-keepclassmembers class br.com.csktech.movies.access.TopMoviesAccess {
    public *;
 }
-
--keep class br.com.csktech.movies.api.Movie { *; }
--keep class br.com.csktech.movies.api.ApiResponse { *; }
-
 
 ##  --- Begin:GSON ----
 # Gson uses generic type information stored in a class file when working with fields. Proguard

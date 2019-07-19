@@ -1,11 +1,11 @@
-package br.com.csktech.movies.api
+package br.com.csktech.movies.model
 
 import com.google.gson.annotations.SerializedName
 
 class Movie {
 
     @SerializedName("vote_cout")
-    var vote_cout : Int = 0
+    var voteCout : Int = 0
 
     @SerializedName("id")
     var id: Int = 0
@@ -14,7 +14,7 @@ class Movie {
     var video : Boolean = false
 
     @SerializedName("vote_average")
-    var vote_average: Float = 0F
+    var voteAverage: Float = 0F
 
     @SerializedName("title")
     var title: String = ""
@@ -23,16 +23,16 @@ class Movie {
     var popularity: Float = 0F
 
     @SerializedName("poster_path")
-    var poster_path: String = ""
+    var posterPath: String = ""
 
     @SerializedName("original_language")
-    var original_language: String = ""
+    var originalLanguage: String = ""
 
     @SerializedName("original_title")
-    var original_title: String = ""
+    var originalTitle: String = ""
 
     @SerializedName("backdrop_path")
-    var backdrop_path: String = ""
+    var backdropPath: String = ""
 
     @SerializedName("adult")
     var adult: Boolean = false
@@ -41,6 +41,6 @@ class Movie {
     var overview: String = ""
 
     @SerializedName("release_date")
-    var release_date: String = ""
+    var releaseDate: String = ""
 
 }

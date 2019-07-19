@@ -4,7 +4,7 @@ import android.arch.lifecycle.Observer
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.view.View
-import br.com.csktech.movies.api.TopMoviesBusiness
+import br.com.csktech.movies.access.TopMoviesAccess
 import br.com.csktech.mylibrary.R
 import br.com.csktech.mylibrary.viewModel.MainViewModel
 import kotlinx.android.synthetic.main.activity_main.*
@@ -15,7 +15,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val viewModel = MainViewModel(TopMoviesBusiness())
+        val viewModel = MainViewModel(TopMoviesAccess())
         viewModel.fetchMovies()
 
         setupUI(viewModel)
